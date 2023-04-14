@@ -6,9 +6,9 @@ interface Props {
   user: User;
 }
 
-export default function UserItem(props: Props) {
+/** Renders a user in the presence list. */
+export default function UserItem({ user }: Props) {
   const [showTooltip, setShowTooltip] = useState(false);
-  const { user } = props;
 
   const handleMouseOver = () => {
     setShowTooltip(true);

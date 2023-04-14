@@ -7,6 +7,7 @@ interface PresenceProps {
   channelId: string;
 }
 
+/** Displays a list of users who are present in a given channel. */
 const Presence: React.FC<PresenceProps> = ({ channelId }) => {
   const {
     data: users,
@@ -21,11 +22,11 @@ const Presence: React.FC<PresenceProps> = ({ channelId }) => {
       }
       return await res.json();
     },
+    // Refresh every second
     { refreshInterval: 1000 }
   );
 
   const [showAll, setShowAll] = useState(false);
-  const [showTooltip, setShowTooltip] = useState(false);
 
   if (error) {
     return <div>Error loading users list</div>;
@@ -42,21 +43,17 @@ const Presence: React.FC<PresenceProps> = ({ channelId }) => {
     setShowAll(false);
   };
 
-  const handleMouseOver = () => {
-    setShowTooltip(true);
-  };
-
-  const handleMouseOut = () => {
-    setShowTooltip(false);
-  };
-
   return (
     <div className="flex flex-col gap-2 border rounded-lg pl-4 pr-1 py-2 w-1/3 min-w-400">
-      <div className="max-h-80 overflow-y-scroll">
-        {(showAll ? users! : visibleUsers).map((user) => (
-          <UserItem key={user.username} user={user} />
-        ))}
-      </div>
+      {users!.length == 0 ? (
+        <div>No active users</div>
+      ) : (
+        <div className="max-h-80 overflow-y-scroll">
+          {(showAll ? users! : visibleUsers).map((user) => (
+            <UserItem key={user.username} user={user} />
+          ))}
+        </div>
+      )}
 
       {users!.length > 5 && (
         <div

@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+To run the development server:
 
 ```bash
 npm run dev
@@ -12,10 +12,18 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Directories
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- `components` is for re-usable React components.
+- `pages` is for routing. The path under `pages` will be the url of that page. For example, `pages/channels.tsx` or `pages/channels/index.tsx` corresponds to http://localhost:3000/channels.
+- `pages/api` is for API routing.
+- `public` is for resources but I don't have any for this project.
+- `styles` is for CSS styles. In this project, I'm using Tailwind CSS to style the elements.
+- `util` is for utility functions.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+The main changes are in `components`, `pages`, `pages/api`, `util`. The other files are mostly created by `npx create-next-app`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Packages
+
+- `react-spinners` is for the ring spinner that is rendered when you click on the channels the first time.
+- `swr` is a lightweight solution for caching and revalidation.

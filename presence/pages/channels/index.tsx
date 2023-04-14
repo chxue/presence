@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 const UsersPage: React.FC = () => {
   const [selectedChannel, setSelectedChannel] = useState<string | null>(null);
 
+  // Inserting a cookie to mimic login behavior.
   useEffect(() => {
     const existingCookie = document.cookie.match(/(^|;)\s*myUserName\s*=/);
     if (!existingCookie) {

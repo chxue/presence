@@ -1,7 +1,6 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { generateUsers, User } from "@/util/data";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { useRouter } from "next/router";
+
 const usersDynamic = generateUsers(50);
 usersDynamic.unshift({
   name: "Chenxiao Xue",
@@ -23,6 +22,7 @@ export default async function handler(
 ) {
   const { id } = req.query;
 
+  // Delay to mimic backend query time.
   await delay(5000);
   const users = id == "dynamic" ? usersDynamic : usersStatic;
   const displayableUsers = users.filter(
