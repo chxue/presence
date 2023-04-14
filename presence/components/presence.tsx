@@ -16,7 +16,10 @@ const Presence: React.FC = () => {
   };
 
   useEffect(() => {
-    setUsers(generateUsers(20));
+    fetch("/api/channel")
+      .then((res) => res.json())
+      .then((data: User[]) => setUsers(data))
+      .catch((error: Error) => console.error(error));
   }, []);
 
   useEffect(() => {

@@ -1,3 +1,5 @@
+let idCounter = 0;
+
 export interface User {
   name: string;
   username: string;
@@ -9,8 +11,9 @@ export function generateUsers(num: number): User[] {
 
   for (let i = 0; i < num; i++) {
     const name = generateRandomName();
-    const username = `${name.replace(/\s/g, "").toLowerCase()}${i + 1}`;
-    const imageUrl = `https://picsum.photos/150/150?random=${i + 1}`;
+    idCounter++;
+    const username = `${name.replace(/\s/g, "").toLowerCase()}${idCounter}`;
+    const imageUrl = `https://picsum.photos/150/150?random=${idCounter}`;
 
     users.push({ name, username, imageUrl });
   }
