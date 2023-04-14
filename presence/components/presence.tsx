@@ -18,13 +18,12 @@ const Presence: React.FC = () => {
   useEffect(() => {
     fetch("/api/channel")
       .then((res) => res.json())
-      .then((data: User[]) => setUsers(data))
+      .then((data: User[]) => {
+        setVisibleUsers(data.slice(0, 5));
+        setUsers(data);
+      })
       .catch((error: Error) => console.error(error));
   }, []);
-
-  useEffect(() => {
-    setVisibleUsers(users.slice(0, 5));
-  }, [users]);
 
   return (
     <div className="flex flex-col gap-2 border rounded-lg pl-4 pr-1 py-2 w-1/3 min-w-400">
