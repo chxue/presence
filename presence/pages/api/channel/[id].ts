@@ -25,7 +25,7 @@ export default async function handler(
 
   await delay(5000);
   const users = id == "dynamic" ? usersDynamic : usersStatic;
-  const displayableUsers = usersDynamic.filter(
+  const displayableUsers = users.filter(
     (user) => user.username != req.cookies["myUserName"]
   );
   if (id == "dynamic") {

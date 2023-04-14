@@ -3,16 +3,19 @@ import { generateUsers, User } from "@/util/data";
 import UserItem from "./user_item";
 import useSWR from "swr";
 import { RingLoader } from "react-spinners";
+interface PresenceProps {
+  channelId: string;
+}
 
-const Presence: React.FC = () => {
+const Presence: React.FC<PresenceProps> = ({ channelId }) => {
   const {
     data: users,
     error,
     isLoading,
   } = useSWR<User[]>(
-    "/api/channel",
+    `/api/channel/${channelId}`,
     async (url) => {
-      const res = await fetch("/api/channel/dynamic");
+      const res = await fetch(url);
       if (!res.ok) {
         throw new Error("Failed to fetch channel data");
       }
