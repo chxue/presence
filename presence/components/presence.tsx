@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import { generateUsers, User } from "@/util/data";
+import UserItem from "./user_item";
 
 const Presence: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [visibleUsers, setVisibleUsers] = useState<User[]>([]);
   const [showAll, setShowAll] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
 
   const handleClick = () => {
     setShowAll(!showAll);
@@ -13,6 +14,14 @@ const Presence: React.FC = () => {
 
   const handleShowLess = () => {
     setShowAll(false);
+  };
+
+  const handleMouseOver = () => {
+    setShowTooltip(true);
+  };
+
+  const handleMouseOut = () => {
+    setShowTooltip(false);
   };
 
   useEffect(() => {
@@ -29,12 +38,7 @@ const Presence: React.FC = () => {
     <div className="flex flex-col gap-2 border rounded-lg pl-4 pr-1 py-2 w-1/3 min-w-400">
       <div className="max-h-80 overflow-y-scroll">
         {(showAll ? users : visibleUsers).map((user) => (
-          <div key={user.username} className="flex items-center gap-2">
-            <div className="w-10 h-10 relative rounded-full overflow-hidden my-1">
-              <Image src={user.imageUrl} alt={user.name} fill={true} />
-            </div>
-            <div>{user.name}</div>
-          </div>
+          <UserItem key={user.username} user={user} />
         ))}
       </div>
 
