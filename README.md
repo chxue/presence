@@ -5,9 +5,10 @@ This doc talks about the high level behaviors. If you need a detailed technical 
 ## Quick start
 
 1. Clone this repository.
-2. cd presence/
-3. npm run dev
-4. navigate to [http://localhost:3000/channels](http://localhost:3000/channels)
+2. Run `npm i` to install all dependencies.
+3. `cd presence/` to go into the Next project folder.
+4. `npm run dev` to start the server.
+5. Navigate to [http://localhost:3000/channels](http://localhost:3000/channels)
 
 ## Behaviors
 
